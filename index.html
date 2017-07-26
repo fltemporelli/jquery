@@ -33,7 +33,11 @@
 		</div> <!-- fin class container header -->
 <div class="container-fluid">			
 		<div class="row slider">
-			<img src="images/barbershop5.jpg">
+			<ul id="sliderImgs">
+					<li><img src="images/barbershop1.jpg"></li>
+					<li><img src="images/barbershop2.jpg"></li>
+					<li><img src="images/barbershop3.jpg"></li>
+				</ul>
 		</div>
 </div> <!-- fin container fluid-->
 <div class="container articulos">
@@ -83,16 +87,15 @@
 		  <div class="form-group">
 		    	<h3>Pedi un turno!</h3>
 		    	<label for="note">Nombre:</label>
-		    	<input class="form-control" id="cliente" placeholder="Escriba aqui">
+		    	<input class="form-control" id="nombre" placeholder="Escriba aqui" name="nombre">
 		  </div>
 		  <div class="form-group">
 		    	<label for="note">Apellido:</label>
-		    	<input class="form-control" id="cliente" placeholder="Escriba aqui">
+		    	<input class="form-control" id="ap" placeholder="Escriba aqui" name="apellido">
 		  </div>
 		<div class="form-group">
 				<label for="note">Elegí una opción:</label>
-				<select class="form-control" id="sel">
-					    
+				<select class="form-control" id="sel" name="select">
 				</select>
 		</div>
 		<div class="form-group">
@@ -105,20 +108,19 @@
 		</div>
 	<div class="form-group">
 	  		<label for="comment">Comment:</label>
-		  	<textarea class="form-control" rows="5" id="cliente" placeholder="Escriba aqui"></textarea>
+		  	<textarea class="form-control" rows="5" id="campo" placeholder="Escriba aqui" name="comentario"></textarea>
 	</div>
     <div class="form-group">
-		  	 <button type="submit" class="btn btn-default pull-right boton">Submit</button>
+		  	 <button type="submit" class="btn btn-default pull-right boton" id="submit">Submit</button>
 		  	 <button class="btn btn-default pull-right boton">Limpiar</button>
 	</div>
 
-	<ul id="errores"></ul>
+	<ul id="error"></ul>
 
  </form>
 
   </div> <!--fin row form-->
-  <div class="experimento">
-  </div> <!-- fin div experimento --> 
+
   
 </div> <!-- fin container-->
 	<footer><p>Desarrollado por Tempo®, en el marco de la capacitación Ada ITW.</p></footer>
@@ -136,6 +138,7 @@
 </div>
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<script src="js/slider.js"></script>
 	<script src="js/functions.js"></script>
 	</body>
 </html>

@@ -1,5 +1,10 @@
 var options = ['Barba', 'Corte', 'Peinado'];
-var errores= [];  
+var errores = []; 
+var error = document.getElementById('error'); 
+var nombre = document.getElementById('nombre'); 
+var ap = document.getElementById('ap'); 
+var campo = document.getElementById('campo');
+
 
 $(document).ready(function() {
 
@@ -41,6 +46,13 @@ $('.primera').on('mouseenter', function() {
 		}); // fin mouseleave 
 }); //fin mouseenter.
 
+
+$('#submit').click(function (e) {
+		e.preventDefault(); 
+		console.log("asdasasda"); 
+		validarFormulario(form);
+});   // fin valir form 
+
 /*$('.primera').on('mouseleave', function() {
 		$('#segunda').fadeOut ("slow", function () {
 			url=$(this).data('url');
@@ -57,9 +69,11 @@ $('.primera').on('mouseenter', function() {
 
 
 
-/*
-	function soloLetras(x) {
-	   	var expr= /^[a-zA-Z]*$/;
+	
+	// para submitear en jquery: $("#form").submit();
+
+function soloLetras(x) {
+	   	var expr = /^[a-zA-Z]*$/;
 
 	   	if (expr.test(x)) {
 	   		return true; 
@@ -67,74 +81,94 @@ $('.primera').on('mouseenter', function() {
 	   	return false; 
 	}
 
-	function validarNombre() { 
+function validarNombre(x) { 
 
-		nombre = $('#nombre').val();
 
-		if(nombre.value == '' || nombre.value == null) {
-			 errores.push('<li>Por favor complete el nombre</li>')
-		}
+		if(x.value == '' || x.value == null) {
+			 errores.push('<li>Por favor complete el nombre</li>'); 
+			 console.log('null'); 
+			 
+	}
 
 		else { 
-
-			if (!soloLetras(nombre)) { 
+			if (!soloLetras(x.value)) { 
 
 				errores.push('<li>Solo puede ingresar letras en el nombre</li>'); 
+				console.log('solo letras'); 
+				
 
-			} else { return true; }
+			} else { 
+				console.log('todo bien');  
+				return true;
 
-		} 
+			}
 
-		return false; 
-
-	}
-
-
-	function validarAp() { 
-
-		ap = $('#apellido').val();
-
-		if(ap.value == '' || ap.value == null) {
-			 errores.push('<li>Por favor complete el apellido</li>')
 		}
 
-		else { 
+}
 
-			if (!soloLetras(ap)) { 
+function validarApellido(x) { 
+
+
+		if(x.value == '' || x.value == null) {
+			 errores.push('<li>Por favor complete el apellido</li>'); 
+			 console.log('null'); 
+			 
+	}
+
+		else { 
+			if (!soloLetras(x.value)) { 
 
 				errores.push('<li>Solo puede ingresar letras en el apellido</li>'); 
+				console.log('solo letras'); 
+				
 
-			} else { return true; }
+			} else { 
+				console.log('todo bien');  
+				return true;
 
-		} 
+			}
 
-		return false; 
+		}
+
+}
+
+
+	function validarCampo(x) { 
+
+			if (!soloLetras(x.value)) { 
+
+				errores.push('<li>Solo puede ingresar letras en el campo</li>');
+				console.log(errores); 
+
+			} 
+			
+			else 
+
+	{
+				console.log('todo bien');
+				return true; 
 
 	}
 
-	function validarCampo() { 
+}
 
-		campo = $('#campo').val();
+	function validarFormulario(x) {
+		
+		validarNombre(nombre); 
+		validarApellido(ap); 
+		validarCampo(campo); 
 
-			if (!soloLetras(campo)) { 
-
-				errores.push('<li>Solo puede ingresar letras en el campo</li>'); 
-
-			} else { return true; }
-
-		} 
-
-		return false; 
-
-	}
-
-	function validarForm {
-
-		var form = $('#form').val(); 
-		if (validarNombre() && validarAp() && validarCampo()) 
+		if (errores.length==0) 
 				{ 
-					form.submit; 
-				} 
-	} */
+					var datos= $('#form').serialize();  
+					console.log(datos);
 
-	
+				} else {
+					error.style.display = 'block';
+					for (i=0; i<errores.length; i++) 
+						error.innerHTML += errores[i]; 
+				    }
+
+	} // fin validarForm
+
